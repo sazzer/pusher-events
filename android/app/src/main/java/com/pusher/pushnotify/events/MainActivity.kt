@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
         val eventViewHolder = view.tag as EventViewHolder
 
-        Log.v("MainActivity", "Cicked id: " + eventViewHolder.id)
+        Log.v("MainActivity", "Clicked id: " + eventViewHolder.id)
         PushNotifications.subscribe(eventViewHolder.id);
     }
 }
