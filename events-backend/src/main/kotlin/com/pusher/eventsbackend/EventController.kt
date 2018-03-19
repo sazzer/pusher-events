@@ -38,6 +38,7 @@ class EventController(@Autowired private val eventNotifier: EventNotifier) {
                 start = event.start
         )
         events.add(newEvent)
+        eventNotifier.emitGlobal("CREATED", newEvent)
         return newEvent
     }
 

@@ -11,6 +11,20 @@ class EventNotifier(
 ) {
     private val pusher = PushNotifications(instanceId, secretKey)
 
+    fun emitGlobal(action: String, event: Event) {
+        pusher.publish(
+                listOf("global-event-$action"),
+                mapOf(
+                        "fcm" to mapOf(
+                                "notification" to mapOf(
+                                        "title" to "New event: ${event.name}",
+                                        "body" to "${event.description}. Start time: ${event.start}"
+                                )
+                        )
+                )
+        )
+    }
+
     fun emitForEvent(action: String, event: Event) {
         pusher.publish(
                 listOf(event.id!!),
@@ -38,11 +52,10 @@ class EventNotifier(
                         "fcm" to mapOf(
                                 "notification" to mapOf(
                                         "title" to event.name,
-                                        "body" to "$message"
+                                        "body" to message
                                 )
                         )
                 )
         )
     }
-
 }
