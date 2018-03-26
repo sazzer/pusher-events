@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical|fill_horizontal"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="8dp">
+
+    <TextView
+        android:id="@+id/nameLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Event Name:" />
+
+    <TextView
+        android:id="@+id/nameValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/descriptionLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description:" />
+
+    <TextView
+        android:id="@+id/descriptionValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/startLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Time:" />
+
+    <TextView
+        android:id="@+id/startValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/numberInterestLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No. of Interested Users:" />
+
+    <TextView
+        android:id="@+id/numberInterestValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <Button
+        android:id="@+id/interestedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickInterested"
+        android:text="Interested" />
+
+    <Button
+        android:id="@+id/disinterestedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickDisinterested"
+        android:text="Not Interested" />
+</LinearLayout>
+

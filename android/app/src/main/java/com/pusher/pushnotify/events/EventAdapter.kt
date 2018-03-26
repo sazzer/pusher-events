@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
-class EventAdapter(private val recordContext: Context) : BaseAdapter() {
 
+class EventAdapter(private val recordContext: Context) : BaseAdapter() {
     var records: List<Event> = listOf()
         set(value) {
             field = value
@@ -20,10 +20,10 @@ class EventAdapter(private val recordContext: Context) : BaseAdapter() {
         val theView = if (view == null) {
             val recordInflator = recordContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-            val theView = recordInflator.inflate(R.layout.record, null)
+            val theView = recordInflator.inflate(R.layout.event, null)
             val newEventViewHolder = EventViewHolder(
-                    theView.findViewById(R.id.record_name),
-                    theView.findViewById(R.id.record_date)
+                    theView.findViewById(R.id.event_name),
+                    theView.findViewById(R.id.event_date)
             )
             theView.tag = newEventViewHolder
 
@@ -50,8 +50,8 @@ class EventAdapter(private val recordContext: Context) : BaseAdapter() {
 }
 
 data class EventViewHolder(
-    val nameView: TextView,
-    val dateView: TextView
+        val nameView: TextView,
+        val dateView: TextView
 ) {
     var id: String? = null
 }

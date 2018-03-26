@@ -13,12 +13,15 @@ class EventNotifier(
 
     fun emitGlobal(action: String, event: Event) {
         pusher.publish(
-                listOf("global-event-$action"),
+                listOf(action),
                 mapOf(
                         "fcm" to mapOf(
-                                "notification" to mapOf(
-                                        "title" to "New event: ${event.name}",
-                                        "body" to "${event.description}. Start time: ${event.start}"
+                                "data" to mapOf(
+                                        "action" to action,
+                                        "id" to event.id,
+                                        "name" to event.name,
+                                        "description" to event.description,
+                                        "start" to event.start
                                 )
                         )
                 )
@@ -27,32 +30,50 @@ class EventNotifier(
 
     fun emitForEvent(action: String, event: Event) {
         pusher.publish(
-                listOf(event.id!!),
+                listOf("EVENT_" + event.id!!),
                 mapOf(
                         "fcm" to mapOf(
-                                "notification" to mapOf(
-                                        "title" to event.name,
-                                        "body" to "${event.description}. Start time: ${event.start}"
+                                "data" to mapOf(
+                                        "action" to action,
+                                        "id" to event.id,
+                                        "name" to event.name,
+                                        "description" to event.description,
+                                        "start" to event.start
                                 )
                         )
                 )
         )
     }
 
-    fun emitForSubscription(action: String, user: String, event: Event) {
-        val message = if (action == "SUBSCRIBED") {
-            "$user is interested"
-        } else {
-            "$user is not interested"
-        }
-
+    fun emitForUsers(action: String, users: List<String>, event: Event) {
         pusher.publish(
-                listOf(event.id!!),
+                users.map { "USER_$it" },
                 mapOf(
                         "fcm" to mapOf(
-                                "notification" to mapOf(
-                                        "title" to event.name,
-                                        "body" to message
+                                "data" to mapOf(
+                                        "action" to action,
+                                        "id" to event.id,
+                                        "name" to event.name,
+                                        "description" to event.description,
+                                        "start" to event.start
+                                )
+                        )
+                )
+        )
+    }
+
+    fun emitFromUser(action: String, user: String, event: Event) {
+        pusher.publish(
+                listOf("EVENT_" + event.id!!),
+                mapOf(
+                        "fcm" to mapOf(
+                                "data" to mapOf(
+                                        "user" to user,
+                                        "action" to action,
+                                        "id" to event.id,
+                                        "name" to event.name,
+                                        "description" to event.description,
+                                        "start" to event.start
                                 )
                         )
                 )

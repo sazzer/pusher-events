@@ -32,7 +32,7 @@ class EventController(@Autowired private val eventNotifier: EventNotifier) {
     @RequestMapping(method = [RequestMethod.POST])
     fun createEvent(@RequestBody event: Event): Event {
         val newEvent = Event(
-                id = UUID.randomUUID().toString(),
+                id = UUID.randomUUID().toString().replace("-", ""),
                 name = event.name,
                 description = event.description,
                 start = event.start
@@ -80,7 +80,7 @@ class EventController(@Autowired private val eventNotifier: EventNotifier) {
 
         eventInterest.add(user)
         events.find { it.id == event }
-                ?.let { eventNotifier.emitForSubscription("SUBSCRIBED", user, it) }
+                ?.let { eventNotifier.emitFromUser("SUBSCRIBED", user, it) }
     }
 
     @RequestMapping(value = ["/{id}/interest/{user}"], method = [RequestMethod.DELETE])
@@ -91,6 +91,12 @@ class EventController(@Autowired private val eventNotifier: EventNotifier) {
 
         eventInterest.remove(user)
         events.find { it.id == event }
-                ?.let { eventNotifier.emitForSubscription("UNSUBSCRIBED", user, it) }
+                ?.let { eventNotifier.emitFromUser("UNSUBSCRIBED", user, it) }
+    }
+
+    @RequestMapping(value = ["/{id}/share"], method = [RequestMethod.POST])
+    fun shareEvent(@PathVariable("id") event: String, @RequestBody friends: List<String>) {
+        events.find { it.id == event }
+                ?.let { eventNotifier.emitForUsers("RECOMMENDED", friends, it) }
     }
 }

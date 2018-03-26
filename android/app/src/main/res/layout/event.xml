@@ -3,7 +3,7 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:id="@+id/record_name"
+        android:id="@+id/event_name"
         android:fontFamily="serif"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -11,7 +11,7 @@
         android:textColor="#000"
         android:text="Name"/>
     <TextView
-        android:id="@+id/record_date"
+        android:id="@+id/event_date"
         android:textColor="#000"
         android:fontFamily="serif"
         android:layout_height="wrap_content"
