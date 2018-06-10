@@ -2,6 +2,8 @@
 
 Push notifications are the frontline interaction between a user and their connections within a social network, updating them when something has happened so they can pick up where they left off.
 
+View tutorial: [Part 1](https://pusher.com/tutorials/push-notifications-social-android-part-1) [Part 2](https://pusher.com/tutorials/push-notifications-social-android-part-2)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
